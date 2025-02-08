@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6eb;
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .card {
+            position: relative;
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: popIn 0.5s ease-out;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes-btn { background-color: #ff6699; color: white; }
+        .no-btn { background-color: #ccc; color: black; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter your first and last name:</h2>
+        <input type="text" id="nameInput">
+        <button onclick="checkName()">Submit</button>
+        <p id="errorMessage" class="hidden">Sorry, this question is not for you.</p>
+    </div>
+    
+    <div id="questionSection" class="hidden">
+        <div class="card">
+            <h2>Will you be my Valentine? 💖</h2>
+            <button class="yes-btn" onclick="showPopup()">Yes!</button>
+            <button class="no-btn" onclick="turnToYes(this)">No</button>
+        </div>
+    </div>
+    
+    <script>
+        function checkName() {
+            const correctName = "[Amira Pasion]"; // Change this!
+            const enteredName = document.getElementById("nameInput").value;
+            if (enteredName.toLowerCase() === correctName.toLowerCase()) {
+                document.querySelector(".container").style.display = "none";
+                document.getElementById("questionSection").classList.remove("hidden");
+            } else {
+                document.getElementById("errorMessage").classList.remove("hidden");
+            }
+        }
+
+        function showPopup() {
+            alert("See you on February 15, 2025! ❤️");
+        }
+
+        function turnToYes(button) {
+            button.innerText = "Yes!";
+            button.classList.add("yes-btn");
+            button.onclick = showPopup;
+        }
+    </script>
+</body>
+</html>
